@@ -1,11 +1,9 @@
-//import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rankey/Screens/Home/CategorySelector.dart';
 import 'package:rankey/Screens/Home/MovieCards.dart';
+import 'package:rankey/shared/constants.dart';
 
-import 'package:rankey/Screens/Home/Search.dart';
 
 class MyHomePage extends StatefulWidget {
 
@@ -17,6 +15,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  final List a = [["c","d"],["a","b"],["e","f"],["a","b"],["e","f"]];
+  final List b = [["a","b"],["c","d"],["e","f"],["c","d"],["e","f"]];
+  final List c = [["e","f"],["a","b"],["c","d"],["a","b"],["c","d"]];
+  final List total = [["cac","dac"],["aac","bac"],["eac","fac"],["aac","b"],["e","f"]];
+
   _MyHomePageState();
 
   String language = "All";
@@ -24,9 +27,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
 
   Widget build(BuildContext context) {
-    final List a = [["c","d"],["a","b"],["e","f"],["a","b"],["e","f"]];
-    final List b = [["a","b"],["c","d"],["e","f"],["c","d"],["e","f"]];
-    final List c = [["e","f"],["a","b"],["c","d"],["a","b"],["c","d"]];
     language = language == null ? 'All' : language;
     languages = Set.from(['All']);
 //    scores.forEach((element) {
@@ -40,16 +40,24 @@ class _MyHomePageState extends State<MyHomePage> {
         resizeToAvoidBottomInset:false,
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-//        backgroundColor: Theme.of(context).backgroundColor,
         title: Text("Rankey"),
         actions: <Widget>[
-          Search(),
+//          Search(),
+
           SizedBox(width: 10,),
-          Icon(Icons.search),SizedBox(width: 10,)],
+          MaterialButton(
+            child: Icon(Icons.search,color: Colors.white,),
+            onPressed: (){
+              Navigator.pushNamed(context, searchRoute);
+            },
+          ),
+//          SizedBox(width: 10,)
+        ],
         backgroundColor: Theme.of(context).primaryColor,
         elevation: 0,
       ),
-      body: Container(
+      body:
+      Container(
 //        color: Colors.red,
         child: Column(
           children:<Widget>[
@@ -115,5 +123,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-
